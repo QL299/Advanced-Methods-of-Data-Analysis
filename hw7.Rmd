@@ -1,0 +1,23 @@
+---
+title: "hw7"
+author: "AMANDA LIU"
+date: "2018年4月18日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(itsmr)
+x=Sunspots
+```
+
+```{r}
+plota(x, v = NULL, h = 40)
+yw(x,2)
+plota(x, v = yw(x,2), h = 40)
+```
+
+

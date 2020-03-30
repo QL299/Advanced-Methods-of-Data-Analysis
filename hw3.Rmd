@@ -1,0 +1,55 @@
+---
+title: "hw4"
+author: "AMANDA LIU"
+date: "2018年3月7日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library("itsmr")
+```
+
+```{r}
+x = ts(deaths)
+plot(x)
+
+acf(x,lag.max=40,type="correlation",plot=TRUE)
+```
+
+
+```{r}
+s=season(deaths,12) 
+e=deaths-s
+plot(ts(e))
+
+acf(e,lag.max=40,type="correlation",plot=TRUE)
+```
+
+```{r}
+s=season(deaths,12)
+y=deaths-s
+m=trend(y,2)
+e2=deaths-s-m
+plot(ts(e2))
+
+acf(e2,lag.max=40,type="correlation",plot=TRUE)
+
+```
+
+```{r}
+test(e2)
+```
+```
+The IID model is not rejected based on the correlogram because most of the bars are located within the dashed lines and the p-values provided by multiple test are all beyond 0.05.
+```
+
+```{r}
+xv=c("season",12,"trend",2)
+a=arma(e,0,0) 
+forecast(deaths,xv,a,h=24,opt=2)
+```
+
